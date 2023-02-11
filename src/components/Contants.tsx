@@ -1,41 +1,94 @@
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
+import React, { useState } from "react";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import TextareaAutosize from "@mui/base/TextareaAutosize";
+import axios from "axios";
 
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }))
+const Contants = () => {
+  const [coverLetter, setCoverLetter] = useState("");
+  const [jobDescription, setJobDescription] = useState("");
+  const [expericence, setExpericence] = useState("");
 
-const Contants = () => { 
-    return (
-            <Box sx={{ flexGrow: 1 }}>
-            <Grid container spacing={2}>
-                <Grid xs={6}>
-                <Item>
-                    <Typography variant="h4" gutterBottom >
-                        Generate Cover Letter
-                    </Typography>
-                </Item>
-               
-                </Grid>
-                <Grid xs={6}>
-                    <Item>
-                        <Button variant="outlined">Generate</Button>
-                    </Item>
-                </Grid>
+  function buildCVHandler() {
+    if (jobDescription === "") {
+      return;
+    }
+    let prompt =
+      "Write a short cover letter for the following job description: " +
+      jobDescription +
+      " for a candidate that has the following experiences: " +
+      expericence;
+    axios
+      .post("https://openaioverview.azurewebsites.net/api/completionAPI", {
+        model: "text-davinci-003",
+        prompt: prompt,
+        max_tokens: 400,
+        temperature: 0,
+      })
+      .then(function (response) {
+        if (response.status === 200) {
+          console.log(response.data);
+          setCoverLetter(response.data);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
-            </Grid>
+  return (
+    <Grid container spacing={2} mt={2}>
+      <Grid xs={6} item={true}>
+        <Typography variant="h4" gutterBottom>
+          Generate Cover Letter
+        </Typography>
+      </Grid>
+      <Grid xs={6} item={true}>
+        <Button variant="outlined" onClick={buildCVHandler}>
+          Generate
+        </Button>
+      </Grid>
+      {/* input field */}
+      <Grid xs={6} item={true}>
+        <p>Enter in the job description</p>
 
-                 
-            </Box>
-    )
-}
+        <TextareaAutosize
+          aria-label="Enter in the job description:"
+          placeholder="Job description..."
+          style={{ width: "100%", height: 145 }}
+          minRows={3}
+          maxRows={10}
+          value={jobDescription}
+          onChange={(e) => setJobDescription(e.target.value)}
+        />
+      </Grid>
+      <Grid xs={6} item={true}>
+        <p>Enter some experiences or skills you have</p>
+        <TextareaAutosize
+          aria-label="Enter some experiences or skills you have:"
+          placeholder="experiences or skills..."
+          style={{ width: "100%", height: 145 }}
+          minRows={3}
+          maxRows={10}
+          value={expericence}
+          onChange={(e) => setExpericence(e.target.value)}
+        />
+      </Grid>
+
+      <Grid xs={12} item={true}>
+        <p>You customized cover letter</p>
+        <TextareaAutosize
+          aria-label="You Customized cover letter"
+          placeholder=""
+          style={{ width: "100%", height: 300 }}
+          minRows={3}
+          maxRows={20}
+          value={coverLetter}
+        />
+      </Grid>
+    </Grid>
+  );
+};
 
 export default Contants;

@@ -19,8 +19,10 @@ const Header = () => {
           >
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            CV Builder
+            AI  Ninjia
           </Typography>
+          <Button color="inherit">Cover Letter</Button>
+          <Button color="inherit">Proposal</Button>
           <Button color="inherit">Login</Button>
           <Button color="inherit">Sign Up</Button>
         </Toolbar>
