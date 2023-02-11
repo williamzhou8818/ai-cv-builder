@@ -9,11 +9,14 @@ const Contants = () => {
   const [coverLetter, setCoverLetter] = useState("");
   const [jobDescription, setJobDescription] = useState("");
   const [expericence, setExpericence] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   function buildCVHandler() {
     if (jobDescription === "") {
       return;
     }
+    setIsLoading(true);
+
     let prompt =
       "Write a short cover letter for the following job description: " +
       jobDescription +
@@ -30,6 +33,7 @@ const Contants = () => {
         if (response.status === 200) {
           console.log(response.data);
           setCoverLetter(response.data);
+          setIsLoading(false);
         }
       })
       .catch(function (error) {
@@ -45,9 +49,17 @@ const Contants = () => {
         </Typography>
       </Grid>
       <Grid xs={6} item={true}>
-        <Button variant="outlined" onClick={buildCVHandler}>
-          Generate
-        </Button>
+        {!isLoading ? (
+          <Button variant="outlined" onClick={buildCVHandler}>
+            Generate
+          </Button>
+        ) : (
+          <img
+            src="./loading.gif"
+            alt="loading..."
+            style={{ width: "74px", height: "74px" }}
+          />
+        )}
       </Grid>
       {/* input field */}
       <Grid xs={6} item={true}>
