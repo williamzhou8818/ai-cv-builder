@@ -8,7 +8,7 @@ import ImageBuilder from "./components/ImageBuilder";
 
 const router = createBrowserRouter([
   { path: "/", element: <CoverLetterBuilder /> },
-  { path: "/imagebuilder", element: <ImageBuilder />},
+  { path: "/stockimage", element: <ImageBuilder />},
 ]);
 
 function App() {

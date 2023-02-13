@@ -16,7 +16,7 @@ const ImageBuilder = () => {
 
   const [stockPhoto, setStockPhoto] = useState([
     {
-      img: "https://oaidalleapiprodscus.blob.core.windows.net/private/org-FOffmBiUat3Gdc9sWvEOobIK/user-5cazv0gZKbYRM614vS5z58W7/img-ruZHvg4b5numJO5PuOskWsgo.png?st=2023-02-13T06%3A53%3A44Z&se=2023-02-13T08%3A53%3A44Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-02-13T07%3A46%3A44Z&ske=2023-02-14T07%3A46%3A44Z&sks=b&skv=2021-08-06&sig=3QPAW/1A90OyLg9wHMXWTWEClwIKAau9KdudIePWKSo%3D",
+      img: "./img-ai-ninjia-log.png",
       title: "Ai Ninjia",
     },
   ]);
@@ -56,14 +56,14 @@ const ImageBuilder = () => {
     <Grid container spacing={2} mt={2}>
       <Grid xs={6} item={true}>
         <Typography variant="h4" gutterBottom>
-          Generate Your Stock Photo
+          Generate Your Stock Image
         </Typography>
       </Grid>
       <Grid xs={6} item={true}></Grid>
       {/* input field */}
 
       <Grid xs={6} item={true}>
-        <p>Enter in the stock photo that you would like: </p>
+        <p>Enter in the stock image that you would like: </p>
 
         <TextareaAutosize
           aria-label="Enter in the stock photo that you would like:"
