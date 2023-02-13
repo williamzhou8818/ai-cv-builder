@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 
-const Header = () => {
+const HeaderNav = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -23,6 +23,7 @@ const Header = () => {
           </Typography>
           <Button color="inherit">Cover Letter</Button>
           <Button color="inherit">Proposal</Button>
+          <Button color="inherit">Ai Images Builder</Button>
           <Button color="inherit">Login</Button>
           <Button color="inherit">Sign Up</Button>
         </Toolbar>
@@ -31,4 +32,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderNav;

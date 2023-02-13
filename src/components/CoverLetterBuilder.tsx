@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 import axios from "axios";
 
-const Contants = () => {
+const CoverLetterBuilder = () => {
   const [coverLetter, setCoverLetter] = useState("");
   const [jobDescription, setJobDescription] = useState("");
   const [expericence, setExpericence] = useState("");
@@ -29,14 +29,14 @@ const Contants = () => {
         max_tokens: 400,
         temperature: 0,
       })
-      .then(function (response) {
+      .then(function (response:any) {
         if (response.status === 200) {
           console.log(response.data);
           setCoverLetter(response.data);
           setIsLoading(false);
         }
       })
-      .catch(function (error) {
+      .catch(function (error:any) {
         console.log(error);
       });
   }
@@ -103,4 +103,4 @@ const Contants = () => {
   );
 };
 
-export default Contants;
+export default CoverLetterBuilder;

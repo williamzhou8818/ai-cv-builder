@@ -1,8 +1,15 @@
 import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
-import Header from "./components/Header";
-import Contants from "./components/Contants";
+import Header from "./components/HeaderNav";
+import CoverLetterBuilder from "./components/CoverLetterBuilder";
+import ImageBuilder from "./components/ImageBuilder";
+
+const router = createBrowserRouter([
+  { path: "/", element: <CoverLetterBuilder /> },
+  { path: "/imagebuilder", element: <ImageBuilder />},
+]);
 
 function App() {
   return (
@@ -10,7 +17,7 @@ function App() {
       <CssBaseline />
       <Container>
         <Header />
-        <Contants />
+        <RouterProvider router={router} />
       </Container>
     </React.Fragment>
   );
